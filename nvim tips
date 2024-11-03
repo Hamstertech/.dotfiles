@@ -1,0 +1,22 @@
+ - leader -> s -> h  - Fuzzy finder
+	- C+/ - Help
+ - leader -> s -> n  - Files list
+ - leader -> sd  - Documents symbols for navigation in file (Only searches for LSP symbols)
+ - leader -> f  - Formats buffer
+
+ - g -> d  - Go to definitions
+ - g -> r  - Go to references
+ 
+ - K  - Shows documentation for function called
+ 
+ - :Ex  - Go to explorer
+ 
+Autocompletion:
+ - C + n / C + p  - For scrolling through list
+ - C + y  - For accepting item
+ 
+File explorer:
+ - %  - Create new file
+ 
+ 
+ https://www.perplexity.ai/search/i-am-using-pop-os-and-have-dec-J_zX4hZTSQ2Y9Tung6miyA
