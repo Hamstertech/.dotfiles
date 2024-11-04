@@ -30,7 +30,7 @@ echo "Creating symlinks..."
 for file in "${DOTFILES[@]}"; do
     if [ "$file" = "nvim" ]; then
         # Special case for nvim folder
-        src="$DOTFILES_DIR/$file"
+        src="$DOTFILES_DIR/.config/$file"
         dest="$HOME/.config/$file"
     else
         src="$DOTFILES_DIR/$file"
