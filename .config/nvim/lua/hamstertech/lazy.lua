@@ -12,4 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Set up lazy.nvim
-require("lazy").setup("hamstertech.plugins")
+require("lazy").setup({
+	spec = "hamstertech.plugins",
+	change_detection = { notify = false },
+})

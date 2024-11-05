@@ -10,6 +10,18 @@
  - K  - Shows documentation for function called
  
  - :Ex  - Go to explorer
+
+ CTRL-W s  - split horizontally
+ CTRL-W v  - split vertically
+ CTRL-W <down/up/left/right>  - Move cursor to window
+
+ CTRL-d  - Move down a page
+
+ CTRL-V  - visual mode multi line
+ V  - Visual mark mode
+ G  - Jump to end of file
+ f<letter>  - Find next letter
+ ciw  - Change inner word
  
 Autocompletion:
  - C + n / C + p  - For scrolling through list
@@ -17,6 +29,7 @@ Autocompletion:
  
 File explorer:
  - %  - Create new file
+
  
  
  https://www.perplexity.ai/search/i-am-using-pop-os-and-have-dec-J_zX4hZTSQ2Y9Tung6miyA

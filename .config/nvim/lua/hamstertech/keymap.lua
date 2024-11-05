@@ -47,3 +47,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.hl.on_yank()
 	end,
 })
+
+-- Enabled Autopairs
+vim.keymap.set("i", "(", "()<Left>", { noremap = true })
+vim.keymap.set("i", "[", "[]<Left>", { noremap = true })
+vim.keymap.set("i", "{", "{}<Left>", { noremap = true })
+vim.keymap.set("i", "'", "''<Left>", { noremap = true })
+vim.keymap.set("i", '"', '""<Left>', { noremap = true })
