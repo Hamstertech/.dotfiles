@@ -11,13 +11,14 @@
  
  - :Ex  - Go to explorer
 
- CTRL-W s  - split horizontally
- CTRL-W v  - split vertically
- CTRL-W <down/up/left/right>  - Move cursor to window
+ CTRL-w s  - split horizontally
+ CTRL-w v  - split vertically
+ CTRL-w <down/up/left/right>  - Move cursor to window
 
  CTRL-d  - Move down a page
 
  CTRL-V  - visual mode multi line
+ CTRL-v  - visual mode
  V  - Visual mark mode
  G  - Jump to end of file
  f<letter>  - Find next letter
