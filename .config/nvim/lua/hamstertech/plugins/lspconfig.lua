@@ -9,40 +9,18 @@ return {
 		},
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-
-		-- Useful status updates for LSP.
-		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-		{
-			"j-hui/fidget.nvim",
-			opts = {},
-		},
-
-		-- Allows extra capabilities provided by nvim-cmp
 		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-cmdline",
+		"hrsh7th/nvim-cmp",
+		"L3MON4D3/LuaSnip",
+		"saadparwaiz1/cmp_luasnip",
+		"j-hui/fidget.nvim",
 	},
 	config = function()
-		-- Brief aside: **What is LSP?**
-		--
-		-- LSP is an initialism you've probably heard, but might not understand what it is.
-		--
-		-- LSP stands for Language Server Protocol. It's a protocol that helps editors
-		-- and language tooling communicate in a standardized fashion.
-		--
-		-- In general, you have a "server" which is some tool built to understand a particular
-		-- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc.). These Language Servers
-		-- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
-		-- processes that communicate with some "client" - in this case, Neovim!
-		--
-		-- LSP provides Neovim with features like:
-		--  - Go to definition
-		--  - Find references
-		--  - Autocompletion
-		--  - Symbol Search
-		--  - and more!
-		--
-		-- Thus, Language Servers are external tools that must be installed separately from
-		-- Neovim. This is where `mason` and related plugins come into play.
-		--
+		require("fidget").setup()
+		require("mason").setup()
 		-- If you're wondering about lsp vs treesitter, you can check out the wonderfully
 		-- and elegantly composed help section, `:help lsp-vs-treesitter`
 
@@ -67,8 +45,6 @@ return {
 				--  This is where a variable was first declared, or where a function is defined, etc.
 				--  To jump back, press <C-t>.
 				map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-
-				-- Find references for the word under your cursor.
 				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
 				-- Jump to the implementation of the word under your cursor.
@@ -87,9 +63,6 @@ return {
 				-- Fuzzy find all the symbols in your current workspace.
 				--  Similar to document symbols, except searches over your entire project.
 				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-
-				-- Rename the variable under your cursor.
-				--  Most Language Servers support renaming across files, etc.
 				map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 
 				-- Execute a code action, usually your cursor needs to be on top of an error
@@ -130,8 +103,7 @@ return {
 				end
 
 				-- The following code creates a keymap to toggle inlay hints in your
-				-- code, if the language server you are using supports them
-				--
+				-- code, if the language server you are using supports them.
 				-- This may be unwanted, since they displace some of your code
 				if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
 					map("<leader>th", function()
@@ -184,20 +156,10 @@ return {
 							globals = { "vim" },
 							disable = { "missing-fields" },
 						},
-						-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-						-- diagnostics = { disable = { 'missing-fields' } },
 					},
 				},
 			},
 		}
-
-		-- Ensure the servers and tools above are installed
-		--  To check the current status of installed tools and/or manually install
-		--  other tools, you can run
-		--    :Mason
-		--
-		--  You can press `g?` for help in this menu.
-		require("mason").setup()
 
 		-- You can add other tools here that you want Mason to install
 		-- for you, so that they are available from within Neovim.
@@ -208,16 +170,71 @@ return {
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		require("mason-lspconfig").setup({
+			ensure_installed = {
+				"lua_ls",
+				"intelephense",
+				"tailwindcss",
+				"volar",
+			},
 			handlers = {
 				function(server_name)
 					local server = servers[server_name] or {}
-					-- This handles overriding only values explicitly passed
-					-- by the server configuration above. Useful when disabling
-					-- certain features of an LSP (for example, turning off formatting for ts_ls)
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 					require("lspconfig")[server_name].setup(server)
 				end,
+
+				["lua_ls"] = function()
+					local lspconfig = require("lspconfig")
+					lspconfig.lua_ls.setup({
+						settings = {
+							Lua = {
+								diagnostics = {
+									globals = { "vim" },
+								},
+							},
+						},
+					})
+				end,
 			},
+		})
+
+		local cmp = require("cmp")
+		local cmp_select = { behavior = cmp.SelectBehavior.Select }
+		cmp.setup({
+			snippet = {
+				expand = function(args)
+					require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+				end,
+			},
+			mapping = cmp.mapping.preset.insert({
+				["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+				["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+				["<C-y>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+				["<C-Space>"] = cmp.mapping.complete(),
+				-- ["<C-e>"] = cmp.mapping.abort(),
+			}),
+			sources = cmp.config.sources({
+				{ name = "nvim_lsp" },
+				{ name = "luasnip" }, -- For luasnip users.
+			}, {
+				{ name = "buffer" },
+			}),
+		})
+
+		vim.diagnostic.config({
+			update_in_insert = true,
+			float = {
+				focusable = false,
+				style = "minimal",
+				border = "rounded",
+				source = "always",
+				header = "",
+				prefix = "",
+			},
+		})
+
+		vim.diagnostic.config({
+			virtual_text = true,
 		})
 	end,
 }
