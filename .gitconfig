@@ -6,3 +6,5 @@
 [user]
 	name = Hamstertech
 	email = 17197031+Hamstertech@users.noreply.github.com
+[init]
+	defaultBranch = master

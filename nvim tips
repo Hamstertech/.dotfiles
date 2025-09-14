@@ -4,12 +4,16 @@
  - leader -> sd  - Documents symbols for navigation in file (Only searches for LSP symbols)
  - leader -> f  - Formats buffer
 
+
  - g -> d  - Go to definitions
  - g -> r  - Go to references
- 
+
  - K  - Shows documentation for function called
- 
+
  - :Ex  - Go to explorer
+ - :w  - Save file 
+ - :q  - Quit document, can be combined to :wq
+
 
  CTRL-w s  - split horizontally
  CTRL-w v  - split vertically
@@ -23,14 +27,17 @@
  G  - Jump to end of file
  f<letter>  - Find next letter
  ciw  - Change inner word
- 
+
 Autocompletion:
  - C + n / C + p  - For scrolling through list
  - C + y  - For accepting item
- 
+
 File explorer:
  - %  - Create new file
 
- 
- 
+In Mason:
+:Mason - opens Mason
+ - X for delete
+ - i for install
+
  https://www.perplexity.ai/search/i-am-using-pop-os-and-have-dec-J_zX4hZTSQ2Y9Tung6miyA
