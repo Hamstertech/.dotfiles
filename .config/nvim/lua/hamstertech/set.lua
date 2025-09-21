@@ -4,12 +4,12 @@ vim.opt.shiftwidth = 4
 vim.opt.wrap = false
 
 -- Testing split startup
--- vim.cmd("vsplit")
--- vim.cmd("wincmd l")
--- vim.cmd("split")
--- vim.cmd("wincmd j")
--- vim.cmd("resize 10")
--- vim.cmd("enew")
+vim.cmd("vsplit")
+vim.cmd("wincmd l")
+vim.cmd("split")
+vim.cmd("wincmd j")
+vim.cmd("resize 10")
+vim.cmd("enew")
 -- vim.cmd("file notes")
 
 vim.g.have_nerd_font = false
