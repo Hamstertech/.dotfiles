@@ -5,7 +5,7 @@
  - Add symbolic link command to setup (And delete old file if it already exists)
  	- Symbolic link creation example: ln -s ~/.dotfiles/.gitconfig/.gitconfig ~/.gitconfig
 
-# Oh-My-Zsh
+# Oh-My-Zsh & NVM
     sudo apt install zsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -13,6 +13,8 @@
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
     source ~/.zshrc
     git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+
+# PHP
     sudo add-apt-repository -y ppa:ondrej/php
     sudo apt update -y
 
@@ -37,17 +39,13 @@
                 done
         done
 
-# Composer
+# Composer & laravel
     cd ~
     curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
     HASH=`curl -sS https://composer.github.io/installer.sig`
     php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
     sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
     composer global require "laravel/installer"
-
-
-# NVM
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 
 # Valet
     composer global require cpriego/valet-linux
