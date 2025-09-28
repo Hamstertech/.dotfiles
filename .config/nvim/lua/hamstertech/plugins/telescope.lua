@@ -15,10 +15,17 @@ return {
 			--   },
 			-- },
 			-- pickers = {}
-			extensions = {
-				["ui-select"] = {
-					require("telescope.themes").get_dropdown(),
-				},
+			-- extensions = {
+			--	["ui-select"] = {
+			--		require("telescope.themes").get_dropdown(),
+			--	},
+			--},
+			defaults = {
+				layout_strategy = "horizontal",
+				layout_config = { prompt_position = "top" },
+				sorting_strategy = "ascending",
+				prompt_prefix = "🔍 ",
+				path_display = { "truncate" },
 			},
 		})
 
