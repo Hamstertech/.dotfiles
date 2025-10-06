@@ -11,6 +11,12 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Make line numbers default
+vim.opt.number = true
+-- You can also add relative line numbers, to help with jumping.
+--  Experiment for yourself to see if you like it!
+vim.opt.relativenumber = true
+
 -- Set up lazy.nvim
 require("lazy").setup({
 	spec = "hamstertech.plugins",
