@@ -105,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vi="nvim ."
 alias pa="php artisan"
 alias co="checkout"
 alias ci="commit"
@@ -115,6 +116,10 @@ alias pint="php ./vendor/bin/pint"
 alias stan="php ./vendor/bin/phpstan"
 alias pip="python -m pip"
 alias ca="clear"
+alias pat="php artisan test"
+alias cpat="clear && php artisan test"
+alias cpata="clear && php ./vendor/bin/pint --preset psr12 && php artisan test"
+alias patcover="XDEBUG_MODE=coverage php artisan test --coverage"
 
 # export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/hamster/.config/composer/vendor/bin
 

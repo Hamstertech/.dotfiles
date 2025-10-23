@@ -8,7 +8,7 @@ vim.cmd("vsplit")
 vim.cmd("wincmd l")
 vim.cmd("split")
 vim.cmd("wincmd j")
-vim.cmd("resize 10")
+vim.cmd("resize 25")
 vim.cmd("enew")
 -- vim.cmd("file notes")
 

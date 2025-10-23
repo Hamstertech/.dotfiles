@@ -83,6 +83,13 @@ return {
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 		local servers = {
 			intelephense = {},
+			-- phpactor = { -- secondary LSP for refactoring and code actions; disable completion to avoid conflicts
+			-- 	init_options = {
+			-- 		["language_server_phpstan.enabled"] = false, -- disable phpstan here to avoid duplication if using separate linter
+			-- 		["language_server_diagnostics.enabled"] = false, -- disable diagnostics from phpactor if you want phpstan only
+			-- 		["language_server_completion.enabled"] = false, -- disable phpactor completions to prioritize intelephense
+			-- 	},
+			-- },
 			lua_ls = {
 				settings = {
 					Lua = { completion = { callSnippet = "Replace" } },
