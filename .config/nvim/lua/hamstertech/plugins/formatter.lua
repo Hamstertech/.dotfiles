@@ -28,11 +28,13 @@ return { -- Autoformat
 			return {
 				timeout_ms = 500,
 				lsp_format = lsp_format_opt,
+				-- lsp_fallback = true,
+				-- async = true,
 			}
 		end,
 		formatters_by_ft = {
 			lua = { "stylua" },
-			php = { "pint" },
+			-- php = { "pint" },
 			-- conform can also run multiple formatters sequentially
 			-- python = { "isort", "black" },
 			--

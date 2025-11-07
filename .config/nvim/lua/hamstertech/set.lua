@@ -3,6 +3,9 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.wrap = false
 
+-- Abbreviations
+vim.api.nvim_create_user_command("Re", "resize <args>", { nargs = 1 })
+
 -- Testing split startup
 vim.cmd("vsplit")
 vim.cmd("wincmd l")
