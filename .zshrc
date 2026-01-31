@@ -129,6 +129,8 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="$HOME/anaconda3/bin:$PATH"
 
+export PATH="$HOME/.cargo/bin:$PATH"
+
 #if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 #  exec tmux
 #fi
